@@ -1,0 +1,28 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Balatro';
+  src: url('./assets/fonts/balatro.otf.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  /* Balatro Color Palette */
+  --color-blue-light: #018BF6;
+  --color-blue-dark: #0155A2;
+  --color-orange-light: #FA8C01;
+  --color-orange-dark: #9D5900;
+  --color-red-light: #EF4637;
+  --color-red-dark: #9C2724;
+  --color-green-light: #3A9F75;
+  --color-green-dark: #205C44;
+  --color-gray-light: #667A78;
+  --color-gray-dark: #404A4C;
+  --color-grey-default: #4F6367;
+
+  /* Balatro Font */
+  --font-balatro: 'Balatro', system-ui, -apple-system, sans-serif;
+  --font-family-sans: var(--font-balatro);
+}
