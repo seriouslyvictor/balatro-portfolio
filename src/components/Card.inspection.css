@@ -16,8 +16,7 @@
   transform-style: preserve-3d;
   transition: transform 0.2s;
   transform:
-    rotate3d(var(--x, 0), var(--y, 0), 0, var(--r, 0deg))
-    rotateZ(calc(var(--ambientAmount, 0) * 10deg));
+    rotate3d(var(--x, 0), var(--y, 0), 0, var(--r, 0deg)) rotateZ(calc(var(--ambientAmount, 0) * 10deg));
 }
 
 .hover-grid {

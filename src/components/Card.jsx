@@ -60,12 +60,12 @@ function Card({
         </div>
 
         {/* Center Image */}
-        <div className="absolute inset-0 flex items-center justify-center p-6 pointer-events-none z-10">
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
           {imageSrc && (
             <img
               src={imageSrc}
               alt={topText}
-              className="max-w-full max-h-full object-contain"
+              className="w-full h-auto object-contain"
             />
           )}
         </div>
