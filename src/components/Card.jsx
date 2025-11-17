@@ -1,18 +1,17 @@
-import { useState } from 'react';
-import './Card.inspection.css';
-import './Card.wobble.css';
-import './Card.lift.css';
+import { useState } from "react";
+import "./Card.inspection.css";
+import "./Card.wobble.css";
+import "./Card.lift.css";
 
 function Card({
   topText = "JOKER",
-  bottomText = "JACK",
-  imageUrl,
+  bottomText = "JOKER",
   imageSrc,
-  initialState = "idle" // "idle" | "inspect" | "lift"
+  initialState = "idle", // "idle" | "inspect" | "lift"
 }) {
   const [cardState, setCardState] = useState(initialState);
   // Random delay for each card's wobble animation (for natural staggered effect)
-  const randomDelay = Math.random();
+  const [randomDelay] = useState(() => Math.random());
 
   const handleMouseEnter = () => {
     if (cardState !== "lift") {
@@ -27,7 +26,7 @@ function Card({
   };
 
   const handleClick = () => {
-    setCardState(prevState => prevState === "lift" ? "idle" : "lift");
+    setCardState(prevState => (prevState === "lift" ? "idle" : "lift"));
   };
 
   return (
@@ -35,7 +34,7 @@ function Card({
       className={`card-container card-state-${cardState}`}
       style={{
         perspective: "560px",
-        transformStyle: "preserve-3d"
+        transformStyle: "preserve-3d",
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -44,15 +43,19 @@ function Card({
       <div
         className="card-inner bg-white rounded-lg shadow-lg font-balatro"
         style={{
-          width: "162px",
-          height: "219px",
-          '--rand': randomDelay
+          "width": "162px",
+          "height": "219px",
+          "--rand": randomDelay,
         }}
       >
         {/* Top Left Text (vertical, top-down) */}
-        <div className="absolute top-3 left-2 pointer-events-none z-10">
-          <div className="vertical-text text-xl font-bold text-gray-700 tracking-widest">
-            {topText}
+        <div className="absolute top-2 left-2 pointer-events-none z-10">
+          <div className="vertical-text text-lg font-bold text-gray-700">
+            {topText.split("").map((char, i) => (
+              <div key={i} style={{ marginTop: i > 0 ? "-5px" : "0" }}>
+                {char}
+              </div>
+            ))}
           </div>
         </div>
 
@@ -68,9 +71,13 @@ function Card({
         </div>
 
         {/* Bottom Left Text (vertical, bottom-up) */}
-        <div className="absolute bottom-3 right-2 pointer-events-none z-10">
-          <div className="vertical-text-reverse text-xl font-bold text-gray-700 tracking-widest">
-            {bottomText}
+        <div className="absolute bottom-2 right-2 pointer-events-none z-10">
+          <div className="vertical-text-reverse text-lg font-bold text-gray-700">
+            {bottomText.split("").map((char, i) => (
+              <div key={i} style={{ marginTop: i > 0 ? "-5px" : "0" }}>
+                {char}
+              </div>
+            ))}
           </div>
         </div>
 
@@ -84,13 +91,15 @@ function Card({
 
       <style>{`
         .vertical-text {
-          writing-mode: vertical-lr;
-          text-orientation: mixed;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
 
         .vertical-text-reverse {
-          writing-mode: vertical-lr;
-          text-orientation: mixed;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
           transform: rotate(180deg);
         }
       `}</style>
