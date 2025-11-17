@@ -1,0 +1,36 @@
+/* Ambient wobble animation - CSS custom property */
+@property --ambientAmount {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0.1;
+}
+
+@keyframes ambientMovement {
+  0%, 100% {
+    --ambientAmount: 0.1;
+  }
+  50% {
+    --ambientAmount: -0.1;
+  }
+}
+
+/* Idle state - default wobble */
+.card-state-idle .card-inner {
+  animation-name: ambientMovement;
+  animation-duration: 4000ms;
+  animation-delay: calc(-4000ms * var(--rand));
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+/* Inspect state - stop wobbling, let 3D inspection take over */
+.card-state-inspect .card-inner {
+  animation-play-state: paused;
+  --ambientAmount: 0;
+}
+
+/* Lift state - stop wobbling, card is selected */
+.card-state-lift .card-inner {
+  animation-play-state: paused;
+  --ambientAmount: 0;
+}

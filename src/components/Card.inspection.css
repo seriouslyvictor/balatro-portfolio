@@ -1,0 +1,99 @@
+/* Card Container */
+.card-container {
+  position: relative;
+  transition: scale 0.1s;
+  cursor: pointer;
+}
+
+/* Inspect state - scale up */
+.card-state-inspect {
+  scale: 1.05;
+}
+
+/* Card Inner - base transform */
+.card-inner {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.2s;
+  transform:
+    rotate3d(var(--x, 0), var(--y, 0), 0, var(--r, 0deg))
+    rotateZ(calc(var(--ambientAmount, 0) * 10deg));
+}
+
+.hover-grid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+.hover-cell {
+  font-style: normal;
+}
+
+/* 3D Inspection - only active in inspect state */
+
+/* Top-left quadrant */
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(1):hover),
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(2):hover),
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(5):hover),
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(6):hover) {
+  --x: -1;
+  --y: 1;
+}
+
+/* Top-right quadrant */
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(3):hover),
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(4):hover),
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(7):hover),
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(8):hover) {
+  --x: -1;
+  --y: -1;
+}
+
+/* Bottom-left quadrant */
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(9):hover),
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(10):hover),
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(13):hover),
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(14):hover) {
+  --x: 1;
+  --y: 1;
+}
+
+/* Bottom-right quadrant */
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(11):hover),
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(12):hover),
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(15):hover),
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(16):hover) {
+  --x: 1;
+  --y: -1;
+}
+
+/* Corner cells - maximum rotation */
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(1):hover),
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(4):hover),
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(13):hover),
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(16):hover) {
+  --r: 8deg;
+}
+
+/* Edge cells - medium rotation */
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(2):hover),
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(3):hover),
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(5):hover),
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(8):hover),
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(9):hover),
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(12):hover),
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(14):hover),
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(15):hover) {
+  --r: 4deg;
+}
+
+/* Center cells - minimal rotation */
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(6):hover),
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(7):hover),
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(10):hover),
+.card-state-inspect .card-inner:has(.hover-cell:nth-child(11):hover) {
+  --r: 2deg;
+}
