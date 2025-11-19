@@ -7,6 +7,8 @@ function Card({
   topText = "JOKER",
   bottomText = "JOKER",
   imageSrc,
+  backgroundSrc,
+  hasBorder = false,
   initialState = "idle", // "idle" | "inspect" | "lift"
 }) {
   const [cardState, setCardState] = useState(initialState);
@@ -41,13 +43,24 @@ function Card({
       onClick={handleClick}
     >
       <div
-        className="card-inner bg-white rounded-lg shadow-lg font-balatro"
+        className={`card-inner bg-white rounded-lg shadow-lg font-balatro ${hasBorder ? "border-4 border-white" : ""}`}
         style={{
           "width": "162px",
           "height": "219px",
           "--rand": randomDelay,
         }}
       >
+        {/* Background Image */}
+        {backgroundSrc && (
+          <div className="absolute inset-0 rounded-lg overflow-hidden">
+            <img
+              src={backgroundSrc}
+              alt=""
+              className="w-full h-full object-cover"
+            />
+          </div>
+        )}
+
         {/* Top Left Text (vertical, top-down) */}
         <div className="absolute top-2 left-2 pointer-events-none z-10">
           <div className="vertical-text text-lg font-bold text-gray-700">
