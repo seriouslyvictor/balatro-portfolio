@@ -138,7 +138,7 @@ export default function Balatro({
         ];
       }
     }
-    window.addEventListener("resize", resize);
+    window.addEventListener("resize", resize); 
     resize();
 
     const geometry = new Triangle(gl);
